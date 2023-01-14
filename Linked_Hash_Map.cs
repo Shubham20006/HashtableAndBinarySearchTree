@@ -1,20 +1,23 @@
-﻿using System;
+﻿using HashTableAssignment;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HashTableAssignment
+namespace HashTable
 {
     public class Linked_Hash_Map<K, V> where K : IComparable
     {
         private readonly int Num_Buckets;
         readonly List<Linked_List<K, V>> Bucket_List;
+        public StringBuilder Result;
 
         public Linked_Hash_Map(int Num_Buckets)
         {
             this.Num_Buckets = Num_Buckets;
             Bucket_List = new List<Linked_List<K, V>>(Num_Buckets);
+            Result = new StringBuilder();
 
             for (int i = 0; i < Num_Buckets; i++)
                 Bucket_List.Add(null);
@@ -36,6 +39,7 @@ namespace HashTableAssignment
         }
         public void Add(K Key, V Value)
         {
+            Result.Append(Key + " ");
             int Index = Get_Index(Key);
             Linked_List<K, V> linked_list = Bucket_List[Index];
 
